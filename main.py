@@ -21,17 +21,15 @@ X_test, Y_test = make_classification(n_samples=100)
 
 rfc = RandomForestClassifier(n_estimators=100, bootstrap = False, criterion= 'entropy', max_depth=3, max_features='sqrt', min_samples_leaf= 4)
 rfc.fit(X_train,Y_train)
-Y_test = rfc.predict(X_test)
+Y_test_rfc = rfc.predict(X_test)
+X_test_rfc = X_test[:, 0]
 
-print(Y_test)
 
-'''
-itog = pd.DataFrame({"Loan ID": testid.values,
-                   "Loan Status": y_test_rfc
+itog = pd.DataFrame({"Loan ID": X_test_rfc,
+                   "Loan Status": Y_test_rfc
                    })
 
 itog.loc[(itog["Loan Status"] == 0), "Loan Status"] = "Fully Paid"
 itog.loc[(itog["Loan Status"] == 1), "Loan Status"] = "Charged Off"
 
 itog.to_csv("itog.csv", index=False)
-'''
