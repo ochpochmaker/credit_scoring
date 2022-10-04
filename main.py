@@ -19,12 +19,13 @@ X_train, Y_train = make_classification(n_samples=100)
 X_test, Y_test = make_classification(n_samples=100)
 
 
-rfc = RandomForestClassifier(n_estimators=200, bootstrap= False, criterion= 'entropy', max_depth=3, max_features='sqrt', min_samples_leaf= 4)
+rfc = RandomForestClassifier(n_estimators=100, bootstrap = False, criterion= 'entropy', max_depth=3, max_features='sqrt', min_samples_leaf= 4)
 rfc.fit(X_train,Y_train)
-y_test_rfc = rfc.predict(X_test)
+Y_test = rfc.predict(X_test)
 
-testid = X_test[1]
+print(Y_test)
 
+'''
 itog = pd.DataFrame({"Loan ID": testid.values,
                    "Loan Status": y_test_rfc
                    })
@@ -33,5 +34,4 @@ itog.loc[(itog["Loan Status"] == 0), "Loan Status"] = "Fully Paid"
 itog.loc[(itog["Loan Status"] == 1), "Loan Status"] = "Charged Off"
 
 itog.to_csv("itog.csv", index=False)
-
-print("hello world")
+'''
